@@ -32,13 +32,13 @@ fn format_input(input: &str) -> Vec<(usize, usize)> {
 
 fn part1(input: &str) -> usize {
     let formatted_input = format_input(input);
-
     let (mut left, mut right): (Vec<_>, Vec<_>) = formatted_input.into_iter().unzip();
-    (left.sort(), right.sort());
+    left.sort_unstable();
+    right.sort_unstable();
 
     left.into_iter()
-        .zip(right.into_iter())
-        .map(|(left, right)| left.abs_diff(right))
+        .zip(right)
+        .map(|(l, r)| l.abs_diff(r))
         .sum()
 }
 
@@ -46,13 +46,13 @@ fn part2(input: &str) -> usize {
     let formatted_input = format_input(input);
     let (left, right): (Vec<_>, Vec<_>) = formatted_input.into_iter().unzip();
 
-    let right_counts = right.into_iter().fold(HashMap::new(), |mut acc, e| {
-        *acc.entry(e).or_insert(0) += 1;
-        acc
-    });
+    let mut counts = HashMap::new();
+    for &num in &right {
+        *counts.entry(num).or_insert(0) += 1;
+    }
 
     left.into_iter()
-        .map(|left| right_counts.get(&left).unwrap_or(&0) * left)
+        .map(|num| num * counts.get(&num).copied().unwrap_or(0))
         .sum()
 }
 
