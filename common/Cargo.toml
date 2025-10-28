@@ -1,0 +1,12 @@
+[package]
+name = "aoc-common"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+# Add common dependencies here that multiple years might need
+# Examples:
+# regex = "1.10"
+# itertools = "0.13"

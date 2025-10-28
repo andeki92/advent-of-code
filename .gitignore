@@ -1,0 +1,37 @@
+# Rust build artifacts
+/target/
+**/target/
+debug/
+release/
+
+# Cargo lock file (for libraries, keep for binaries)
+Cargo.lock
+
+# Puzzle inputs (personal and should not be shared)
+**/data/inputs/*.txt
+**/data/inputs/**/*.txt
+
+# Environment variables
+.env
+.env.local
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Benchmark results
+**/criterion/
+
+# Generated files
+*.o
+*.so
+*.dylib
+*.dll
+*.exe

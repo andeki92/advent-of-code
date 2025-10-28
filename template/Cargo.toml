@@ -1,0 +1,26 @@
+[package]
+name = "aoc-YEAR"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+# Minimal library - just for testing utilities
+[lib]
+path = "src/lib.rs"
+
+# Template binary (removed when creating a year)
+[[bin]]
+name = "template"
+path = "src/bin/template.rs"
+
+[dependencies]
+# Common utilities shared across years
+aoc-common = { path = "../common" }
+
+# Keep this section minimal - add dependencies per-day if needed
+# Examples: regex, itertools, etc. should be added as needed
+
+[dev-dependencies]
+# For testing
+rstest = "0.22"

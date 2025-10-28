@@ -1,0 +1,21 @@
+[package]
+name = "aoc-visualizer"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+# GUI framework
+egui = "0.29"
+eframe = { version = "0.29", default-features = true }
+
+# Image generation for GIF exports
+image = { version = "0.25", optional = true }
+gif = { version = "0.13", optional = true }
+
+[features]
+default = []
+export = ["image", "gif"]
+
+[dev-dependencies]

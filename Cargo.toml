@@ -1,0 +1,21 @@
+[workspace]
+resolver = "3"
+members = ["cli", "template", "visualizer", "common", "2024"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+authors = ["Anders Kirkeby"]
+repository = "https://github.com/andeki92/advent-of-code"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+
+[profile.dev]
+opt-level = 0
+
+# Fast compilation for benchmarking
+[profile.bench]
+inherits = "release"
