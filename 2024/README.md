@@ -161,9 +161,3 @@ cargo bench
 │   └── examples/          # Example inputs for tests
 └── Cargo.toml
 ```
-
-This template is a workspace member, so you can test it:
-
-```bash
-cargo test -p aoc-2024
-```

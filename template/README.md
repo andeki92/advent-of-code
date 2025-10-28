@@ -75,18 +75,21 @@ cargo test --bin day01
 First, set up benchmarks:
 
 1. Add criterion to `Cargo.toml`:
+
 ```toml
 [dev-dependencies]
 criterion = { version = "0.5", features = ["html_reports"] }
 ```
 
 2. Expose day modules in `src/lib.rs`:
+
 ```rust
 pub mod day01;
 pub mod day02;
 ```
 
 3. Create `benches/benchmarks.rs`:
+
 ```rust
 use aoc_common::aoc_bench;
 use criterion::{criterion_group, criterion_main};
@@ -99,6 +102,7 @@ criterion_main!(benches);
 ```
 
 Then run:
+
 ```bash
 cargo bench
 ```
@@ -156,9 +160,4 @@ YEAR/
 │   ├── inputs/            # Puzzle inputs (gitignored)
 │   └── examples/          # Example inputs for tests
 └── Cargo.toml
-```
-
-This template is a workspace member, so you can test it:
-```bash
-cargo test -p aoc-YEAR
 ```
