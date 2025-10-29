@@ -46,13 +46,8 @@ fn is_safe_report(report: &[usize]) -> bool {
     (all_increasing || all_decreasing) && valid_diffs
 }
 
-// A report only counts as safe if both of the following are true:
-// - The levels are either all increasing or all decreasing.
-// - Any two adjacent levels differ by at least one and at most three.
-//
-// The Problem Dampener is a reactor-mounted module that lets the reactor
-// safety systems tolerate a single bad level in what would otherwise be
-// a safe report. It's like the bad level never happened!
+// The Problem Dampener [...] lets the reactor safety systems tolerate
+// a single bad level in what would otherwise be a safe report.
 fn is_safe_with_dampening(report: &[usize]) -> bool {
     // First check if already safe without dampening
     if is_safe_report(report) {
