@@ -12,6 +12,26 @@ pub fn parse_char_grid(input: &str) -> Vec<Vec<char>> {
     input.lines().map(|line| line.chars().collect()).collect()
 }
 
+/// Transpose a grid of chars
+pub fn transpose(grid: &[Vec<char>]) -> Vec<Vec<char>> {
+    if grid.is_empty() {
+        return vec![];
+    }
+
+    let rows = grid.len();
+    let cols = grid[0].len();
+
+    let mut transposed = vec![vec![' '; rows]; cols];
+
+    for (y, row) in grid.iter().enumerate() {
+        for (x, &ch) in row.iter().enumerate() {
+            transposed[x][y] = ch;
+        }
+    }
+
+    transposed
+}
+
 /// Parse a list of numbers (one per line)
 pub fn parse_numbers<T: std::str::FromStr>(input: &str) -> Vec<T>
 where
