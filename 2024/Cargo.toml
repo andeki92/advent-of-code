@@ -13,6 +13,7 @@ path = "src/lib.rs"
 [dependencies]
 # Common utilities shared across years
 aoc-common = { path = "../common" }
+regex = { workspace = true }
 
 # Keep this section minimal - add dependencies per-day if needed
 # Examples: regex, itertools, etc. should be added as needed

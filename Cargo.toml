@@ -8,6 +8,9 @@ edition = "2024"
 authors = ["Anders Kirkeby"]
 repository = "https://github.com/andeki92/advent-of-code"
 
+[workspace.dependencies]
+regex = "1"
+
 [profile.release]
 opt-level = 3
 lto = true
