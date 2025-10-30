@@ -16,13 +16,20 @@ fn main() {
     println!("\nTotal time: {:?}", part1_time + part2_time);
 }
 
-fn part1(_input: &str) -> usize {
-    // TODO: Implement part 1
+fn format_input(input: &str) -> Vec<usize> {
+    let _ = input; // TODO: implement
+    vec![]
+}
+
+fn part1(input: &str) -> usize {
+    let formatted_input = format_input(input);
+    let _ = formatted_input; // TODO: implement
     0
 }
 
-fn part2(_input: &str) -> usize {
-    // TODO: Implement part 2
+fn part2(input: &str) -> usize {
+    let formatted_input = format_input(input);
+    let _ = formatted_input; // TODO: implement
     0
 }
 
