@@ -104,7 +104,7 @@ fn main() -> Result<()> {
         Commands::New { command } => match command {
             NewCommands::Day { day, year } => {
                 let year = determine_year(year)?;
-                new::day(day, year)?;
+                new::day(&config, day, year)?;
             }
             NewCommands::Year { year } => {
                 new::year(year)?;

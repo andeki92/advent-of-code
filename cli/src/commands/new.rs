@@ -3,9 +3,11 @@ use colored::*;
 use std::fs;
 use std::path::Path;
 
+use crate::commands::download;
+use crate::config::Config;
 use crate::utils;
 
-pub fn day(day: u8, year: u16) -> Result<()> {
+pub fn day(config: &Config, day: u8, year: u16) -> Result<()> {
     println!(
         "{}",
         format!("Creating day {} for year {}...", day, year).cyan()
@@ -28,10 +30,7 @@ pub fn day(day: u8, year: u16) -> Result<()> {
 
     // Check if solution already exists
     if solution_path.exists() {
-        anyhow::bail!(
-            "Solution file already exists: {}",
-            solution_path.display()
-        );
+        anyhow::bail!("Solution file already exists: {}", solution_path.display());
     }
 
     // Read template
@@ -57,28 +56,46 @@ pub fn day(day: u8, year: u16) -> Result<()> {
     ))?;
     println!("  {} {}", "Created".green(), example_path.display());
 
-    // Create empty input file
-    fs::write(&input_path, "").context(format!(
-        "Failed to create input file at {}",
-        input_path.display()
-    ))?;
-    println!("  {} {}", "Created".green(), input_path.display());
+    // Download input automatically
+    println!();
+    match download::run(config, day, year, false) {
+        Ok(_) => {
+            // Input downloaded successfully
+        }
+        Err(e) => {
+            // If download fails, create empty file and show warning
+            fs::write(&input_path, "").context(format!(
+                "Failed to create input file at {}",
+                input_path.display()
+            ))?;
+            println!("  {} Could not download input: {}", "⚠".yellow(), e);
+            println!(
+                "  {} Empty input file created at {}",
+                "Created".green(),
+                input_path.display()
+            );
+            println!(
+                "  {} You can download it later with: aoc download {} -y {}",
+                "ℹ".blue(),
+                day,
+                year
+            );
+        }
+    }
 
     println!();
     println!("{}", "Next steps:".bold());
     println!("  1. Add example input to {}", example_path.display());
-    println!("  2. Download puzzle input:");
-    println!("     {} aoc download {}", "$".dimmed(), day);
-    println!("  3. Implement solution in {}", solution_path.display());
+    println!("  2. Implement solution in {}", solution_path.display());
     let day_padded = format!("{:02}", day);
-    println!("  4. Run tests:");
+    println!("  3. Run tests:");
     println!(
         "     {} cd {} && cargo test --bin day{}",
         "$".dimmed(),
         year,
         day_padded
     );
-    println!("  5. Run solution:");
+    println!("  4. Run solution:");
     println!(
         "     {} cd {} && cargo run --bin day{} --release",
         "$".dimmed(),
