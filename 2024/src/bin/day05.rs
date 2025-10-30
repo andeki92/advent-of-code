@@ -45,7 +45,7 @@ fn format_input(input: &str) -> (Rules, Pages) {
     (rules, pages)
 }
 
-fn is_valid_order(rules: &Rules, pages: &[usize]) -> bool {
+fn is_ordered(rules: &Rules, pages: &[usize]) -> bool {
     for (idx, &x) in pages.iter().enumerate() {
         for &y in &pages[idx + 1..] {
             if rules.contains(&(y, x)) {
@@ -77,7 +77,7 @@ fn part1(input: &str) -> usize {
 
     pages
         .iter()
-        .filter(|page_list| is_valid_order(&rules, page_list))
+        .filter(|page_list| is_ordered(&rules, page_list))
         .map(middle_element)
         .sum()
 }
@@ -87,7 +87,7 @@ fn part2(input: &str) -> usize {
 
     pages
         .into_iter()
-        .filter(|page_list| !is_valid_order(&rules, page_list))
+        .filter(|page_list| !is_ordered(&rules, page_list))
         .map(|mut page_list| {
             reorder(&rules, &mut page_list);
             middle_element(&page_list)
