@@ -4,6 +4,7 @@
 // Keep this minimal - most logic should stay in individual days.
 
 pub mod benchmark;
+pub mod grid;
 
 // Example utilities (add as needed):
 
