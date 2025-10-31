@@ -48,9 +48,12 @@ fn get_path(grid: &[Vec<char>]) -> HashSet<Position> {
     visited
 }
 
-fn has_loop(grid: &[Vec<char>], obstacle: Position, mut pos: Position) -> bool {
-    let mut visited = vec![vec![[false; 4]; grid[0].len()]; grid.len()];
-
+fn has_loop(
+    grid: &[Vec<char>],
+    obstacle: Position,
+    mut pos: Position,
+    visited: &mut [Vec<[bool; 4]>],
+) -> bool {
     let mut direction = Direction::NORTH;
 
     loop {
@@ -77,21 +80,39 @@ fn has_loop(grid: &[Vec<char>], obstacle: Position, mut pos: Position) -> bool {
     false
 }
 
-// Part 1: 5080 (3.933125ms)
+/**
+ * Clear the visited array to allow re-use. This makes it possible
+ * to reuse the array instead of re-allocating the full array.
+ */
+fn clear_visited(visited: &mut [Vec<[bool; 4]>]) {
+    for row in visited.iter_mut() {
+        for cell in row.iter_mut() {
+            *cell = [false; 4];
+        }
+    }
+}
+
 fn part1(input: &str) -> usize {
     let grid = aoc_common::parse_char_grid(input);
     get_path(&grid).len()
 }
 
-// Part 2: 1919 (56.993341375s)
 fn part2(input: &str) -> usize {
     let grid = aoc_common::parse_char_grid(input);
     let start = get_start_pos(&grid);
     let path = get_path(&grid);
 
+    // Allocate once, reuse for all iterations
+    let mut visited = vec![vec![[false; 4]; grid[0].len()]; grid.len()];
+
     path.into_iter()
         .filter(|&pos| pos != start)
-        .filter(|&pos| has_loop(&grid, pos, start))
+        .filter(|&pos| {
+            let result = has_loop(&grid, pos, start, &mut visited);
+            // Clear visited for next iteration
+            clear_visited(&mut visited);
+            result
+        })
         .count()
 }
 
