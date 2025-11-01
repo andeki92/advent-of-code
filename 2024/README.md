@@ -12,7 +12,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024).
 | [04](https://adventofcode.com/2024/day/4) | ⭐ | ⭐ | [day04.rs](src/bin/day04.rs) | - |
 | [05](https://adventofcode.com/2024/day/5) | ⭐ | ⭐ | [day05.rs](src/bin/day05.rs) | - |
 | [06](https://adventofcode.com/2024/day/6) | ⭐ | ⭐ | [day06.rs](src/bin/day06.rs) | - |
-| [07](https://adventofcode.com/2024/day/7) |  |  |  |  |
+| [07](https://adventofcode.com/2024/day/7) | ⭐ | ⭐ | [day07.rs](src/bin/day07.rs) | - |
 | [08](https://adventofcode.com/2024/day/8) |  |  |  |  |
 | [09](https://adventofcode.com/2024/day/9) |  |  |  |  |
 | [10](https://adventofcode.com/2024/day/10) |  |  |  |  |
@@ -32,7 +32,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024).
 | [24](https://adventofcode.com/2024/day/24) |  |  |  |  |
 | [25](https://adventofcode.com/2024/day/25) |  |  |  |  |
 
-**Total: 12/50 ⭐**
+**Total: 14/50 ⭐**
 
 > This progress table is automatically updated when you submit correct solutions using `aoc submit`.
 > You can also manually update it by running `aoc status -y 2024` from the repository root.

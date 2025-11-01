@@ -5,6 +5,7 @@
 
 pub mod benchmark;
 pub mod grid;
+pub mod nums;
 
 // Example utilities (add as needed):
 
